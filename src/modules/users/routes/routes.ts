@@ -1,20 +1,24 @@
 import { Router } from 'express';
 
+// Controllers
+import Controllers from '../controllers/controllers';
+
 const router = Router();
+const controller = new Controllers();
 
 // Index
-router.get('/');
+router.get('/', controller.index);
 
 // Show
-router.get('/:id');
+router.get('/:id', controller.show);
 
 // Create
-router.post('/');
+router.post('/', controller.create);
 
 // Update
-router.put('/:id');
+router.put('/:id', controller.update);
 
 // Delete
-router.delete('/:id');
+router.delete('/:id', controller.delete);
 
 export default router;
