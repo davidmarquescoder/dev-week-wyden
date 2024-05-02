@@ -1,4 +1,5 @@
 import express from 'express';
+import usersRouter from '../../modules/users/routes/routes';
 
 export default class Server {
   public app: express.Application;
@@ -11,5 +12,7 @@ export default class Server {
     this.app.use(express.json());
   }
 
-  routes() {}
+  routes() {
+    this.app.use('/api/v1/users', usersRouter);
+  }
 }
