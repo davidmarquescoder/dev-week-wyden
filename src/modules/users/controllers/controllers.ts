@@ -31,7 +31,7 @@ export default class Controllers {
   }
 
   update(request: Request, response: Response): Response {
-    const { id } = request.params
+    const { id } = request.params;
 
     const data = {
       name: request.body.name,
@@ -44,19 +44,22 @@ export default class Controllers {
     const index: number = database.findIndex((user) => user.id === id);
     database[index] = data;
 
-    return response.status(200).json({updated: database[index]});
+    return response.status(200).json({ updated: database[index] });
   }
 
   delete(request: Request, response: Response): Response {
     const { id } = request.params;
 
     const index = database.findIndex((user) => user.id === id);
-    const userDeleted = database[index]
 
-    if(index >= 0) {
+    if (index >= 0) {
+      const userDeleted = database[index];
+
       database.splice(index, 1);
-    }
 
-    return response.status(200).json({ db: database, deleted: {id: userDeleted.id, name: userDeleted.name} });
+      return response.status(200).json({ db: database, deleted: { id: userDeleted.id, name: userDeleted.name } });
+    } else {
+      return response.status(400).json({ message: 'User Not Found!' });
+    }
   }
 }
