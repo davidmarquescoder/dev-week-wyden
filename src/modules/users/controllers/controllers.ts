@@ -10,10 +10,9 @@ export default class Controllers {
 
   show(request: Request, response: Response): Response {
     const { id } = request.params;
-
     const user: User | undefined = database.find((user) => user.id === id);
 
-    return response.status(201).json({ user });
+    return response.status(200).json({ user });
   }
 
   create(request: Request, response: Response): Response {
